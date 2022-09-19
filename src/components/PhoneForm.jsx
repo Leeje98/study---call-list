@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 export default class PhoneForm extends Component {
 
+  input = null
+
   state = {
     name: '',
     phone: '',
@@ -14,12 +16,13 @@ export default class PhoneForm extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault()  // 원래 해야 할 작업을 막는다 - (type='submit'의 기본기능인 새로고침 방지)
     this.props.onCreate(this.state);
     this.setState({
       name: '',
       phone: '',
     })
+    this.input.focus()
   }
 
   render() {
@@ -30,6 +33,7 @@ export default class PhoneForm extends Component {
           placeholder='이름' 
           onChange={this.handleChange} 
           value={this.state.name}
+          ref={ ref => this.input = ref}
         />
         <input 
           name='phone'

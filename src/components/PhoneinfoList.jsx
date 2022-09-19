@@ -7,12 +7,20 @@ export default class PhoneinfoList extends Component {
   }
 
   render() {
-    const { data } = this.props
+    const { data, onRemove, onUpdate } = this.props
 
     // if (!data) return null; // 데이터가 없으면 return을 실행하지 않겟다
 
+    console.log('rendering list')
+
     const list = data.map(
-      info => (<PhoneInfo info={info} key={info.id} />)
+      info => (
+        <PhoneInfo 
+          onRemove={onRemove} 
+          onUpdate={onUpdate}
+          info={info} 
+          key={info.id} 
+        />)
     )
     return (
       <div>
